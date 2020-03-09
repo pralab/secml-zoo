@@ -1,0 +1,26 @@
+{
+  "mnist-svm": {
+    "model": "mnist/mnist_svm",
+    "state": "mnist/mnist-svm",
+    "model_md5": "20f3dd14929218e9f366522c22b29b48",
+    "state_md5": "def3689da922ea4462d4955a959ed41b"
+  },
+  "mnist59-svm": {
+    "model": "svm",
+    "state": "mnist/mnist59-svm",
+    "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
+    "state_md5": "371a13b1ac0fc9baec642d999d5b3a94"
+  },
+  "mnist59-svm-rbf": {
+    "model": "svm_rbf",
+    "state": "mnist/mnist59-svm-rbf",
+    "model_md5": "005f544f28056a04deb81fb6793e35bc",
+    "state_md5": "daa4be62fc3a51370415e061847418cb"
+  },
+  "mnist159-cnn": {
+    "model": "mnist/mnist3c_cnn",
+    "state": "mnist/mnist159-cnn",
+    "model_md5": "40fef36c0f0de915cd35f6a084e6d68d",
+    "state_md5": "25557c3f495261567d6a6a25385fb952"
+  }
+}
