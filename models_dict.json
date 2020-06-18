@@ -9,7 +9,7 @@
     "model": "svm",
     "state": "mnist/mnist59-svm",
     "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
-    "state_md5": "371a13b1ac0fc9baec642d999d5b3a94"
+    "state_md5": "3abbf9524e3ac9b42f0e0361340cd23e"
   },
   "mnist59-svm-rbf": {
     "model": "svm_rbf",
