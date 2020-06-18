@@ -14,8 +14,8 @@
   "mnist59-svm-rbf": {
     "model": "svm_rbf",
     "state": "mnist/mnist59-svm-rbf",
-    "model_md5": "005f544f28056a04deb81fb6793e35bc",
-    "state_md5": "daa4be62fc3a51370415e061847418cb"
+    "model_md5": "03390d77692ef50ef12c315d03baf176",
+    "state_md5": "3e3e58273a9193a39f08643b38bab438"
   },
   "mnist159-cnn": {
     "model": "mnist/mnist3c_cnn",
