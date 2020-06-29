@@ -6,7 +6,7 @@
 
 """
 from secml.ml.classifiers import CClassifierSVM
-from secml.ml.kernel import CKernelRBF
+from secml.ml.kernels import CKernelRBF
 
 
 def svm_rbf():
