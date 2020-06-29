@@ -1,9 +1,9 @@
 {
   "mnist-svm": {
-    "model": "mnist/mnist_svm",
+    "model": "svm",
     "state": "mnist/mnist-svm",
-    "model_md5": "20f3dd14929218e9f366522c22b29b48",
-    "state_md5": "def3689da922ea4462d4955a959ed41b"
+    "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
+    "state_md5": "a444f0b8acec44fcdef4444b56df5171"
   },
   "mnist59-svm": {
     "model": "svm",
