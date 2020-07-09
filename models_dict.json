@@ -22,5 +22,11 @@
     "state": "mnist/mnist159-cnn",
     "model_md5": "40fef36c0f0de915cd35f6a084e6d68d",
     "state_md5": "25557c3f495261567d6a6a25385fb952"
+  },
+  "mnist-cnn": {
+    "model": "mnist/mnist_cnn",
+    "state": "mnist/mnist-cnn",
+    "model_md5": "410697ae278498807f1b7518b40779ad",
+    "state_md5": "fb989bc5b801b32129148d971faf0b54"
   }
 }
