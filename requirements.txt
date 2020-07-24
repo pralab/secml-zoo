@@ -1,1 +1,1 @@
-secml[pytorch] >= 0.12.0
+secml[pytorch] >= 0.13.0
