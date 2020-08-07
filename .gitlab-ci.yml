@@ -1,0 +1,28 @@
+image: python:3.5
+
+
+variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    TORCH_HOME: "$CI_PROJECT_DIR/.cache/torch"
+    SECML_HOME_DIR: "$CI_PROJECT_DIR/secml-data"
+
+
+.test-cache:
+  cache: &test-cache
+    paths:
+      - $PIP_CACHE_DIR
+      - $TORCH_HOME
+      - $SECML_HOME_DIR
+
+
+before_script:
+  - echo $CI_PROJECT_DIR
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+
+test:
+  script:
+    - pip install -rrequirements.txt
+    - py.test models/ --junitxml=pytest-report.xml {posargs}
