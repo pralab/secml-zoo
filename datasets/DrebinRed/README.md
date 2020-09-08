@@ -3,7 +3,7 @@
 The dataset contains 12,000 benign and 550 malicious applications,
 with 1,227,080 boolean features each. Data is stored in `CSR` sparse format.
 
-This is a subsample of the *Drebin* dataset. See https://www.sec.cs.tu-bs.de/~danarp/drebin/ 
+It is a subsample of the *Drebin* dataset. See https://www.sec.cs.tu-bs.de/~danarp/drebin/ 
 to obtain the full version. 
 
 ### How to use
@@ -20,5 +20,5 @@ description of each feature.
 Example: `suspicious_calls::com/dnaml/DNLEpunReader/DnlReaderApp;->getBookLanguage`
 
 ### WARNING
-This a toy dataset created for demonstration purposes. Should not be used
+`DrebinRed` ia a toy dataset created for demonstration purposes. It should not be used
  as a benchmark for any research or professional work.
