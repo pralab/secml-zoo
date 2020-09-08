@@ -20,5 +20,5 @@ description of each feature.
 Example: `suspicious_calls::com/dnaml/DNLEpunReader/DnlReaderApp;->getBookLanguage`
 
 ### WARNING
-`DrebinRed` ia a toy dataset created for demonstration purposes. It should not be used
+`DrebinRed` is a toy dataset created for demonstration purposes. It should not be used
  as a benchmark for any research or professional work.
