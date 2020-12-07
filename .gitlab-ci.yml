@@ -1,6 +1,3 @@
-image: python:3.5
-
-
 variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
     TORCH_HOME: "$CI_PROJECT_DIR/.cache/torch"
@@ -14,16 +11,78 @@ variables:
       - $TORCH_HOME
       - $SECML_HOME_DIR
 
+.test-cache-py35:
+  cache: &test-cache-py35
+    key: "test-cache-py35"
+    <<: *test-cache
 
-before_script:
-  - echo $CI_PROJECT_DIR
-  - python -V
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
-  - pip install tox
+.test-cache-py35-win:
+  cache: &test-cache-py35-win
+    key: "test-cache-py35-win"
+    <<: *test-cache
 
-test:
+.test-cache-py36:
+  cache: &test-cache-py36
+    key: "test-cache-py36"
+    <<: *test-cache
+
+.test-cache-py37:
+  cache: &test-cache-py37
+    key: "test-cache-py37"
+    <<: *test-cache
+
+
+.test:
+  interruptible: true
+  before_script:
+    - echo $CI_PROJECT_DIR
+    - python -V
+    - pip install virtualenv
+    - virtualenv venv
+    - source venv/bin/activate
+    - pip install pytest>=5
   script:
     - pip install -rrequirements.txt
     - py.test models/ --junitxml=pytest-report.xml {posargs}
+
+.test-report:
+  artifacts: &pytest-report
+    reports:
+      junit: pytest-report.xml
+    expire_in: 1 week
+
+test:py35:latest:
+  extends: .test
+  image: python:3.5
+  cache: *test-cache-py35
+  artifacts: *pytest-report
+
+test:py35:min:
+  extends: .test
+  image: python:3.5
+  cache: *test-cache-py35
+  artifacts: *pytest-report
+
+test:py36:latest:
+  extends: .test
+  image: python:3.6
+  cache: *test-cache-py36
+  artifacts: *pytest-report
+
+test:py36:min:
+  extends: .test
+  image: python:3.6
+  cache: *test-cache-py36
+  artifacts: *pytest-report
+
+test:py37:latest:
+  extends: .test
+  image: python:3.7
+  cache: *test-cache-py37
+  artifacts: *pytest-report
+
+test:py37:min:
+  extends: .test
+  image: python:3.7
+  cache: *test-cache-py37
+  artifacts: *pytest-report
