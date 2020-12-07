@@ -51,37 +51,19 @@ variables:
       junit: pytest-report.xml
     expire_in: 1 week
 
-test:py35:latest:
+test:py35:
   extends: .test
   image: python:3.5
   cache: *test-cache-py35
   artifacts: *pytest-report
 
-test:py35:min:
-  extends: .test
-  image: python:3.5
-  cache: *test-cache-py35
-  artifacts: *pytest-report
-
-test:py36:latest:
+test:py36:
   extends: .test
   image: python:3.6
   cache: *test-cache-py36
   artifacts: *pytest-report
 
-test:py36:min:
-  extends: .test
-  image: python:3.6
-  cache: *test-cache-py36
-  artifacts: *pytest-report
-
-test:py37:latest:
-  extends: .test
-  image: python:3.7
-  cache: *test-cache-py37
-  artifacts: *pytest-report
-
-test:py37:min:
+test:py37:
   extends: .test
   image: python:3.7
   cache: *test-cache-py37
