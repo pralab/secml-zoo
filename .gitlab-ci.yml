@@ -43,7 +43,7 @@ variables:
     - pip install pytest>=5
   script:
     - pip install -rrequirements.txt
-    - py.test models/ --junitxml=pytest-report.xml {posargs}
+    - py.test models/ --junitxml=pytest-report.xml
 
 .test-report:
   artifacts: &pytest-report
