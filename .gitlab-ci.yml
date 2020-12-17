@@ -4,6 +4,13 @@ variables:
     SECML_HOME_DIR: "$CI_PROJECT_DIR/secml-data"
 
 
+.shared_windows_runners:
+  tags:
+  - shared-windows
+  - windows
+  - windows-1809
+
+
 .test-cache:
   cache: &test-cache
     paths:
