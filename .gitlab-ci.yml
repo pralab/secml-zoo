@@ -3,6 +3,10 @@ variables:
     TORCH_HOME: "$CI_PROJECT_DIR/.cache/torch"
     SECML_HOME_DIR: "$CI_PROJECT_DIR/secml-data"
 
+stages:
+  - test
+  - release
+
 
 .shared_windows_runners:
   tags:
@@ -45,6 +49,7 @@ variables:
 
 
 .test:
+  stage: test
   interruptible: true
   before_script:
     - echo $CI_PROJECT_DIR
@@ -111,3 +116,27 @@ test:py35:win:
   cache: *test-cache-py35-win
   artifacts: *pytest-report
 
+
+.release:
+  stage: release
+  image: ${CI_REGISTRY}/pralab/docker-helper-images/alpine-release:latest
+  only:
+    variables:
+      - $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH && $RELEASE  # Should be set to "X.Y" (without quotes)
+
+release:zoo:
+  extends: .release
+  before_script:
+    - echo $CI_PROJECT_ID
+    - echo $CI_DEFAULT_BRANCH
+    - echo $RELEASE
+  script:
+    - 'curl --request PUT --header "PRIVATE-TOKEN: $API_ACCESS_TOKEN" --header "Content-Type: application/json"
+      --data "{\"branch\": \"$CI_DEFAULT_BRANCH\", \"content\": \"secml[pytorch] >= $RELEASE.0\", \"commit_message\": \"Updated `requirements.txt` for version $RELEASE\"}"
+      "$CI_PROJECT_DOMAIN/api/v4/projects/$CI_PROJECT_ID/repository/files/requirements.txt"'
+    - 'curl --request POST --header "PRIVATE-TOKEN: $API_ACCESS_TOKEN"
+      "$CI_PROJECT_DOMAIN/api/v4/projects/$CI_PROJECT_ID/repository/branches?branch=v$RELEASE&ref=$CI_DEFAULT_BRANCH"'
+    - 'curl --request PUT --header "PRIVATE-TOKEN: $API_ACCESS_TOKEN" --header "Content-Type: application/json"
+      --data "{\"branch\": \"v$RELEASE\", \"content\": \"secml[pytorch] ~= $RELEASE.0\", \"commit_message\": \"Release v$RELEASE\"}"
+      "$CI_PROJECT_DOMAIN/api/v4/projects/$CI_PROJECT_ID/repository/files/requirements.txt"'
+>>>>>>> .gitlab-ci.yml
