@@ -59,7 +59,7 @@ stages:
     - source venv/bin/activate
     - pip install pytest>=5
   script:
-    - pip install -rrequirements.txt
+    - pip install -r requirements.txt
     - py.test models/ --junitxml=pytest-report.xml
 
 .test-report:
