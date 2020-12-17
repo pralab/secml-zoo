@@ -1,1 +1,1 @@
-secml[pytorch] >= 0.13.0
+git+git://https://gitlab.com/secml/secml#egg=secml[pytorch] >= 0.13.0
