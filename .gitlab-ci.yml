@@ -139,4 +139,3 @@ release:zoo:
     - 'curl --request PUT --header "PRIVATE-TOKEN: $API_ACCESS_TOKEN" --header "Content-Type: application/json"
       --data "{\"branch\": \"v$RELEASE\", \"content\": \"secml[pytorch] ~= $RELEASE.0\", \"commit_message\": \"Release v$RELEASE\"}"
       "$CI_PROJECT_DOMAIN/api/v4/projects/$CI_PROJECT_ID/repository/files/requirements.txt"'
->>>>>>> .gitlab-ci.yml
