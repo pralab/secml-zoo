@@ -2,6 +2,9 @@ variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
     TORCH_HOME: "$CI_PROJECT_DIR/.cache/torch"
     SECML_HOME_DIR: "$CI_PROJECT_DIR/secml-data"
+    # To avoid waiting indefinitely due to opened matplotlib figures
+    MPLBACKEND: Agg
+
 
 stages:
   - test
