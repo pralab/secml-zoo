@@ -31,6 +31,11 @@ variables:
     key: "test-cache-py37"
     <<: *test-cache
 
+.test-cache-py38:
+  cache: &test-cache-py38
+    key: "test-cache-py38"
+    <<: *test-cache
+
 
 .test:
   interruptible: true
@@ -68,3 +73,34 @@ test:py37:
   image: python:3.7
   cache: *test-cache-py37
   artifacts: *pytest-report
+
+test:py38:
+  extends: .test
+  image: python:3.8
+  cache: *test-cache-py38
+  artifacts: *pytest-report
+
+test:py35:win:
+  extends:
+    - .test
+    - .shared_windows_runners
+  image: python:3.5
+  before_script:
+    - echo $CI_PROJECT_DIR
+    - choco install vcredist2017 -y
+    - choco install python -y --version=3.5.4
+    # Path is not updated by default by choco
+    - $env:Path += ";C:\Python35;C:\Python35\Scripts"
+    - python -V
+    # If matplotlib cannot find the following registry item tries to read the "WINDIR" env key (caps) and crashes
+    - New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" -Name "Fonts" -Value "C:\Windows\Fonts" -PropertyType "String"
+    # The https://download.pytorch.org/ certificates chain is not recognized by default as trusted
+    - Import-Certificate -FilePath ".gitlab\dl-pytorch-chain.p7b" -CertStoreLocation Cert:\LocalMachine\Root
+    - pip install virtualenv
+    - virtualenv venv
+    - source venv/bin/activate
+    - pip install pytest>=5
+  allow_failure: true
+  cache: *test-cache-py35-win
+  artifacts: *pytest-report
+
