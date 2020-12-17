@@ -105,7 +105,7 @@ test:py35:win:
     - Import-Certificate -FilePath ".gitlab\dl-pytorch-chain.p7b" -CertStoreLocation Cert:\LocalMachine\Root
     - pip install virtualenv
     - virtualenv venv
-    - source venv/bin/activate
+    - venv\Scripts\activate
     - pip install pytest>=5
   allow_failure: true
   cache: *test-cache-py35-win
