@@ -62,7 +62,7 @@ stages:
     - source venv/bin/activate
     - pip install pytest>=5
   script:
-    - pip install -r requirements.txt --find-links=https://download.pytorch.org/whl/torch_stable.html
+    - pip install -r requirements.txt
     - py.test models/ --junitxml=pytest-report.xml
 
 .test-report:
@@ -100,6 +100,8 @@ test:py35:win:
     - .test
     - .shared_windows_runners
   image: python:3.5
+  variables:
+    PIP_FIND_LINKS: "https://download.pytorch.org/whl/torch_stable.html"
   before_script:
     - echo $CI_PROJECT_DIR
     - choco install vcredist2017 -y
