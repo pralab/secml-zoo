@@ -25,19 +25,14 @@ stages:
       - $TORCH_HOME
       - $SECML_HOME_DIR
 
-.test-cache-py35:
-  cache: &test-cache-py35
-    key: "test-cache-py35"
-    <<: *test-cache
-
-.test-cache-py35-win:
-  cache: &test-cache-py35-win
-    key: "test-cache-py35-win"
-    <<: *test-cache
-
 .test-cache-py36:
   cache: &test-cache-py36
     key: "test-cache-py36"
+    <<: *test-cache
+
+.test-cache-py36-win:
+  cache: &test-cache-py36-win
+    key: "test-cache-py36-win"
     <<: *test-cache
 
 .test-cache-py37:
@@ -71,12 +66,6 @@ stages:
       junit: pytest-report.xml
     expire_in: 1 week
 
-test:py35:
-  extends: .test
-  image: python:3.5
-  cache: *test-cache-py35
-  artifacts: *pytest-report
-
 test:py36:
   extends: .test
   image: python:3.6
@@ -95,19 +84,19 @@ test:py38:
   cache: *test-cache-py38
   artifacts: *pytest-report
 
-test:py35:win:
+test:py36:win:
   extends:
     - .test
     - .shared_windows_runners
-  image: python:3.5
+  image: python:3.6
   variables:
-    PIP_FIND_LINKS: "https://download.pytorch.org/whl/torch_stable.html"
+    PIP_FIND_LINKS: "https://download.pytorch.org/whl/cpu/torch_stable.html"
   before_script:
     - echo $CI_PROJECT_DIR
     - choco install vcredist2017 -y
-    - choco install python -y --version=3.5.4
+    - choco install python -y --version=3.6.8
     # Path is not updated by default by choco
-    - $env:Path += ";C:\Python35;C:\Python35\Scripts"
+    - $env:Path += ";C:\Python36;C:\Python36\Scripts"
     - python -V
     # If matplotlib cannot find the following registry item tries to read the "WINDIR" env key (caps) and crashes
     - New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" -Name "Fonts" -Value "C:\Windows\Fonts" -PropertyType "String"
@@ -118,7 +107,7 @@ test:py35:win:
     - venv\Scripts\activate
     - pip install pytest>=5
   allow_failure: true
-  cache: *test-cache-py35-win
+  cache: *test-cache-py36-win
   artifacts: *pytest-report
 
 
