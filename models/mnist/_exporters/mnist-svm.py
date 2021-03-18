@@ -6,13 +6,13 @@ from secml.data.loader import CDataLoaderMNIST
 
 
 tr = CDataLoaderMNIST().load('training')
+tr.X /= 255
+
 clf = svm()
 clf.n_jobs = 1
 clf.verbose = 1
 
 clf.C = 0.1
-
-tr.X /= 255
 
 clf.fit(tr.X, tr.Y)
 
