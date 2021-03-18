@@ -9,13 +9,13 @@
     "model": "svm",
     "state": "mnist/mnist59-svm",
     "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
-    "state_md5": "3abbf9524e3ac9b42f0e0361340cd23e"
+    "state_md5": "7a0e99024fe1d727d06e2e903414678d"
   },
   "mnist59-svm-rbf": {
     "model": "svm_rbf",
     "state": "mnist/mnist59-svm-rbf",
     "model_md5": "03390d77692ef50ef12c315d03baf176",
-    "state_md5": "3e3e58273a9193a39f08643b38bab438"
+    "state_md5": "50f319a7e3ade5fda22db1f1c1ab81e0"
   },
   "mnist159-cnn": {
     "model": "mnist/mnist3c_cnn",
