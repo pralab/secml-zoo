@@ -101,6 +101,7 @@ test:py36:win:
     PIP_FIND_LINKS: "https://download.pytorch.org/whl/cpu/torch_stable.html"
   before_script:
     - echo $CI_PROJECT_DIR
+    - echo $SECML_ZOO_BRANCH
     - choco install vcredist2017 -y
     - choco install python -y --version=3.6.8
     # Path is not updated by default by choco
