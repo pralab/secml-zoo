@@ -1,10 +1,12 @@
+include:
+  - template: 'Workflows/Branch-Pipelines.gitlab-ci.yml'
+
 variables:
     PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
     TORCH_HOME: "$CI_PROJECT_DIR/.cache/torch"
     SECML_HOME_DIR: "$CI_PROJECT_DIR/secml-data"
     # To avoid waiting indefinitely due to opened matplotlib figures
     MPLBACKEND: Agg
-
 
 stages:
   - test
@@ -51,6 +53,7 @@ stages:
   interruptible: true
   before_script:
     - echo $CI_PROJECT_DIR
+    - echo $SECML_ZOO_BRANCH
     - python -V
     - pip install virtualenv
     - virtualenv venv
@@ -59,6 +62,11 @@ stages:
   script:
     - pip install -r requirements.txt
     - py.test models/ --junitxml=pytest-report.xml
+  rules:
+    - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_COMMIT_BRANCH !~ /^v.*/'
+      variables:
+        SECML_ZOO_BRANCH: $CI_COMMIT_BRANCH
+    - when: on_success
 
 .test-report:
   artifacts: &pytest-report
