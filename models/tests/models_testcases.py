@@ -31,4 +31,4 @@ class CModelsTestCases(CUnitTest):
 
         self.logger.info(
             "Accuracy: {:} (expected {:})".format(acc, expected_acc))
-        self.assertGreater(acc, expected_acc)
+        self.assertGreaterEqual(acc, expected_acc)
