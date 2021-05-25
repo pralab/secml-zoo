@@ -28,5 +28,29 @@
     "state": "mnist/mnist-cnn",
     "model_md5": "57d77b383cd33b46fdbbd800db48782a",
     "state_md5": "fb989bc5b801b32129148d971faf0b54"
+  },
+  "icubworld7-day4-svm": {
+    "model": "svm_ova",
+    "state": "iCubWorld/iCubWorld7/icubworld7-day4-svm",
+    "model_md5": "184887d28bdb906fca4cce2f889f80b9",
+    "state_md5": "4d93d16516190bc5a95bc696e8b7c63b"
+  },
+  "icubworld7-day4-svm-rbf": {
+    "model": "svm_rbf_ova",
+    "state": "iCubWorld/iCubWorld7/icubworld7-day4-svm-rbf",
+    "model_md5": "43f9042eda42cf586e0ea3c07f532afb",
+    "state_md5": "1dfd28deeaab22900b1ad0e774640747"
+  },
+  "icubworld28-day4-svm": {
+    "model": "svm_ova",
+    "state": "iCubWorld/iCubWorld28/icubworld28-day4-svm",
+    "model_md5": "184887d28bdb906fca4cce2f889f80b9",
+    "state_md5": "c4b34698a6971da0a49422656bc15058"
+  },
+  "icubworld28-day4-svm-rbf": {
+    "model": "svm_rbf_ova",
+    "state": "iCubWorld/iCubWorld28/icubworld28-day4-svm-rbf",
+    "model_md5": "43f9042eda42cf586e0ea3c07f532afb",
+    "state_md5": "968d19892fa52e976bd240b4c20eecf2"
   }
 }
