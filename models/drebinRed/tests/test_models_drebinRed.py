@@ -1,7 +1,8 @@
 from models.tests import CModelsTestCases
 
 from secml.data.splitter import CTrainTestSplit
-from secml.ml import CClassifierSVM
+from secml.ml.classifiers import CClassifierSVM
+from secml.ml.classifiers.secure import CClassifierSecSVM
 
 from secml.utils import fm, pickle_utils
 
@@ -20,6 +21,13 @@ class TestModelsDrebinRed(CModelsTestCases):
     def test_drebinRed_svm(self):
         model_id = 'drebin-reduced-svm'
         expected_class = CClassifierSVM
+        expected_acc = 0.99
+
+        self._test_model(self.ts, model_id, expected_class, expected_acc)
+
+    def test_drebinRed_sec_svm(self):
+        model_id = 'drebin-reduced-sec-svm'
+        expected_class = CClassifierSecSVM
         expected_acc = 0.99
 
         self._test_model(self.ts, model_id, expected_class, expected_acc)
