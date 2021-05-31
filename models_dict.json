@@ -52,5 +52,17 @@
     "state": "iCubWorld/iCubWorld28/icubworld28-day4-svm-rbf",
     "model_md5": "43f9042eda42cf586e0ea3c07f532afb",
     "state_md5": "968d19892fa52e976bd240b4c20eecf2"
+  },
+  "drebin-svm": {
+    "model": "svm",
+    "state": "drebin/drebin-svm",
+    "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
+    "state_md5": "fd4896507a5d8fd846863e879deae5e1"
+  },
+  "drebin-reduced-svm": {
+    "model": "svm",
+    "state": "drebinRed/drebin-reduced-svm",
+    "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
+    "state_md5": "77ad8ec17b2981c7ce1d44d60b72c4c9"
   }
 }
