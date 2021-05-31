@@ -59,10 +59,22 @@
     "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
     "state_md5": "fd4896507a5d8fd846863e879deae5e1"
   },
+  "drebin-sec-svm": {
+    "model": "sec_svm",
+    "state": "drebin/drebin-sec-svm",
+    "model_md5": "4a3769fc5f6a4273a67f4db0e4b7e91d",
+    "state_md5": "ab19f8ff66e70d4139020f0944b2ea43"
+  },
   "drebin-reduced-svm": {
     "model": "svm",
     "state": "drebinRed/drebin-reduced-svm",
     "model_md5": "938ca44db79ee1c2f66dc456ef4d221c",
     "state_md5": "77ad8ec17b2981c7ce1d44d60b72c4c9"
+  },
+  "drebin-reduced-sec-svm": {
+    "model": "sec_svm",
+    "state": "drebinRed/drebin-reduced-sec-svm",
+    "model_md5": "4a3769fc5f6a4273a67f4db0e4b7e91d",
+    "state_md5": "53a29d031057ee82462c509605f840b0"
   }
 }
