@@ -46,7 +46,7 @@ The zoo has two main folders:
 A new subfolder of `datasets` should be added containing the dataset files and at least 
 a `README.md` file explaining the content/purpose.
 
-Datasets can be packed in `CDataset` format directly, by using the `CDataset.save` made which
+Datasets can be packed in `CDataset` format directly, by using the `CDataset.save()` method which
 exports a `.tar.gz` file, or in any other format. In the latter case please submit the necessary
 `CDataLoader` class as a [merge request for SecML](https://gitlab.com/secml/secml/-/merge_requests).
 
@@ -63,8 +63,8 @@ An entry of the models dictionary file is the following:
   }
 ```
 
-Each item is defined via a model key (`mnist-svm` above), a model path (`svm`), a model state 
-path (`mnist/mnist-svm`) and the md5 sum of both the model and the model state 
+Each item is defined via a model key (`mnist-svm` above), a model path (`svm`), a model 
+state path (`mnist/mnist-svm`) and the md5 sum of both the model and the model state 
 (`model_md5` and `state_md5`, respectively).
 
 The **model** itself should be a Python file containing a single function which returns 
@@ -79,9 +79,13 @@ def svm():
     return CClassifierSVM()
 ```
 
-The **model state** should be an export of the specific pre-trained `CClassifier`, using the
-`CClassifier.save()` method which returns a `.tar.gz` file.
+If the model file is specific to a certain dataset should be put in a specific subfolder
+of the `models` directory. Otherwise can be added directly to the `models` folder.
 
-For each model an **exporter** and proper **unittests** should be defined.
+The **model state** should be an export of the specific pre-trained `CClassifier`, 
+using the `CClassifier.save()` method which returns a `.tar.gz` file. State files 
+should be put in a specific subfolder of the `models` directory.
+
+For each model, an **exporter** and proper **unittests** should be defined.
 
 ### Exporters and Tests
