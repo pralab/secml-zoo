@@ -89,3 +89,17 @@ should be put in a specific subfolder of the `models` directory.
 For each model, an **exporter** and proper **unittests** should be defined.
 
 ### Exporters and Tests
+
+An **exporter** file trains the model on the required dataset using the specific parameters.
+An example is available [here](https://gitlab.com/secml/secml-zoo/-/blob/master/models/mnist/_exporters/mnist-svm.py).
+
+We suggest adding a routine to print the md5 hash of the exported `.tar.gz` model state file as follows:
+```python
+from hashlib import md5
+md5_hash = md5()
+a_file = open(state_path, "rb")
+content = a_file.read()
+md5_hash.update(content)
+
+print('md5: ' + md5_hash.hexdigest())
+```
