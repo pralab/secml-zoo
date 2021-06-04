@@ -79,27 +79,43 @@ def svm():
     return CClassifierSVM()
 ```
 
-If the model file is specific to a certain dataset should be put in a specific subfolder
-of the `models` directory. Otherwise can be added directly to the `models` folder.
+If the model file is specific to a certain dataset, should be put in a separate 
+subfolder of the `models` directory. Otherwise can be added directly to the 
+`models` folder.
 
-The **model state** should be an export of the specific pre-trained `CClassifier`, 
-using the `CClassifier.save()` method which returns a `.tar.gz` file. State files 
-should be put in a specific subfolder of the `models` directory.
+The **model state** should be an pickle export of the pre-trained `CClassifier`.
+To obtain it, one can use the `CClassifier.save()` method, which returns 
+a `.tar.gz` file. State files should be put in a separate subfolder of the 
+`models` directory relative to the specific dataset/configuration.
 
-For each model, an **exporter** and proper **unittests** should be defined.
+Finally, for each model, an **exporter** and proper **unittests** should be defined.
 
 ### Exporters and Tests
 
-An **exporter** file trains the model on the required dataset using the specific parameters.
-An example is available [here](https://gitlab.com/secml/secml-zoo/-/blob/master/models/mnist/_exporters/mnist-svm.py).
+An **exporter** file trains the model on a dataset using a specific configuration 
+(if needed) and stores the resulting `CClassifier` instance (model state) as 
+explained before. An example is available [here](
+https://gitlab.com/secml/secml-zoo/-/blob/master/models/mnist/_exporters/mnist-svm.py).
 
-We suggest adding a routine to print the md5 hash of the exported `.tar.gz` model state file as follows:
+We also suggest adding a routine to print the md5 hash of the exported `.tar.gz` 
+model state file as follows:
 ```python
 from hashlib import md5
 md5_hash = md5()
-a_file = open(state_path, "rb")
+a_file = open(state_path, "rb")  # Path to stored model state file
 content = a_file.read()
 md5_hash.update(content)
 
 print('md5: ' + md5_hash.hexdigest())
 ```
+The model state hash is required in the `models_dict.json` entry as explained before.
+
+To assess the model performance, especially in case of updates to SecML,
+proper unittests should be defined. Test scripts should be put in a `tests` 
+subpackage and will be executed automatically by our CI/CD routines.
+An example can be found [here](
+https://gitlab.com/secml/secml-zoo/-/blob/master/models/mnist/tests/test_models_mnist.py).  
+
+Please avoid loading large datasets as part of the unittests of a model.
+Instead, use a small subset of the original dataset which can be put in the 
+same folder of the unittests scripts.
